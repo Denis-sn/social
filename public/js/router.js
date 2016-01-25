@@ -30,9 +30,9 @@ define(['Backbone'],function(Backbone){
         main: function(){
             App.loggedIn = localStorage.getItem('loggedIn');
             if(App.loggedIn){
-                require(['views/main', 'views/collectionPost'], function(MainView, PostsView){
+                require(['views/main'], function(MainView){
+
                     var mainView = new MainView();
-                    var postView = new PostsView();
                 });
             } else {
                 Backbone.history.navigate('login',{trigger:true});

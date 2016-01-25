@@ -8,7 +8,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
             template: _.template(templateMain),
             events: {
                 'click #logout': 'logout',
-                'click #submitNewPost': 'submitNewPost'
+
             },
 
             initialize: function () {
@@ -19,6 +19,9 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                     success: function (model, res, options) {
                         self.model = model;
                         self.render();
+                        require(['views/collectionPost'], function(CollectionView){
+                            var collectionView = new CollectionView();
+                        });
                     },
                     error: function (model, res, options) {
                         alert('main render error');
@@ -26,29 +29,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                 });
             },
 
-            submitNewPost: function (event) {
-                event.preventDefault();
 
-                var newPost = this.$el.find('#newPost').val();
-                this.$el.find('#newPost').val('');
-                var data = {
-                    text: newPost,
-                    userId: this.model.get('_id')
-                };
-
-                var post = new ModelPost();
-                post.urlRoot = '/post';
-                post.save(data, {
-                    success: function (res, xhr) {
-                        App.loggedIn = true;
-                        localStorage.setItem('loggedIn', true);
-                        Backbone.history.navigate('main', {trigger: true});
-                    },
-                    error: function () {
-                        alert('main post error');
-                    }
-                });
-            },
 
             logout: function () {
 

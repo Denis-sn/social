@@ -89,7 +89,7 @@ db.once('connected', function(){
 
     app.post('/logout', function (req, res, next) {
         req.session.destroy();
-        res.status(200).send({succes: true});
+        res.status(200).send({success: true});
     });
 
     app.get('/user', function(req, res, next){
@@ -106,16 +106,14 @@ db.once('connected', function(){
 
     app.post('/post', function (req, res, next) {
 
+        req.body.userId = req.session.userId;
         var post = new ModelPost(req.body);
 
         post.save(function (err, post) {
             if (err) {
                 return next(err);
             }
-
-            req.session.loggedIn = true;
-            req.session.postId = post._id;
-
+            console.log(req.body);
             res.status(200).send({success: true});
         });
     });
