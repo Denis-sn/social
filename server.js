@@ -107,20 +107,21 @@ db.once('connected', function(){
     app.post('/post', function (req, res, next) {
 
         req.body.userId = req.session.userId;
+        req.body.createdAt = new Date();
         var post = new ModelPost(req.body);
 
         post.save(function (err, post) {
             if (err) {
                 return next(err);
             }
-            console.log(req.body);
+            //console.log(req.body);
             res.status(200).send({success: true});
         });
     });
 
     app.get('/post', function(req, res, next){
 
-        ModelPost.find().exec(function (err, posts) {
+        ModelPost.find().sort({'createdAt': 'desc'}).exec(function (err, posts) {
             if (err) {
                 return next(err);
             }

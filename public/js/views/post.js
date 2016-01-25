@@ -10,19 +10,7 @@ define(['Backbone', 'Underscore', 'models/post', 'text!templates/post.html'],
             events: {},
 
             initialize: function () {
-                //var self = this;
-                //
-                //var post = new ModelPost();
-                //
-                //post.fetch({
-                //    success: function (model, res, options) {
-                //        self.model = model;
-                //        self.render();
-                //    },
-                //    error: function (model, res, options) {
-                //        alert('post view fetch error');
-                //    }
-                //});
+
             },
 
             render: function () {

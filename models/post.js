@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 
 var postSchema = new mongoose.Schema({
     userId :  {type: String, required: true},
-    text :  {type: String, required: true}
+    text :  {type: String, required: true},
+    createdAt: { type: Date, expires: 60*60*24 }
 });
 
 mongoose.model('post', postSchema);
