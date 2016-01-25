@@ -44,6 +44,7 @@ define(['Backbone', 'Underscore', 'models/post', 'views/post', 'collections/post
                     success: function (res, xhr) {
                         self.collection.fetch({
                             success:function(){
+                                self.$el.find('#posts').empty();
                                 self.render();
                             },
                             error:function(){
