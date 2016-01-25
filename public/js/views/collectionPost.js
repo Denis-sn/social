@@ -42,14 +42,12 @@ define(['Backbone', 'Underscore', 'models/post', 'views/post', 'collections/post
                 post.urlRoot = '/post';
                 post.save(data, {
                     success: function (res, xhr) {
-                        alert('post was send');
-
                         self.collection.fetch({
                             success:function(){
                                 self.render();
                             },
                             error:function(){
-
+                                alert('submitNewPost: post.save success - error');
                             }
                         });
                     },
