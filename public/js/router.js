@@ -31,7 +31,6 @@ define(['Backbone'],function(Backbone){
             App.loggedIn = localStorage.getItem('loggedIn');
             if(App.loggedIn){
                 require(['views/main'], function(MainView){
-
                     var mainView = new MainView();
                 });
             } else {

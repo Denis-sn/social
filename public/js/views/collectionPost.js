@@ -1,8 +1,8 @@
 /**
  * Created by den on 24.01.16.
  */
-define(['Backbone', 'Underscore', 'models/user', 'models/post', 'views/post', 'collections/posts','text!templates/postsFrame.html'],
-    function (Backbone, _, ModelUser, ModelPost, PostView, CollectionPosts, PostsFrame) {
+define(['Backbone', 'Underscore', 'models/post', 'views/post', 'collections/posts','text!templates/postsFrame.html'],
+    function (Backbone, _, ModelPost, PostView, CollectionPosts, PostsFrame) {
         var CollectionView = Backbone.View.extend({
             el: '#postsFrame',
             template: _.template(PostsFrame),
@@ -21,7 +21,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'views/post', 'c
                         self.collection = collection;
                         self.render();
                     },
-                    error: function (model, res, options) {
+                    error: function (collection, res, options) {
                         alert('main render error');
                     }
                 });
@@ -42,14 +42,14 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'views/post', 'c
                 post.urlRoot = '/post';
                 post.save(data, {
                     success: function (res, xhr) {
-                        var posts = new CollectionPosts({model: ModelPost});
-                        posts.fetch({
-                            success: function (collection, res, options) {
-                                self.collection = collection;
+                        alert('post was send');
+
+                        self.collection.fetch({
+                            success:function(){
                                 self.render();
                             },
-                            error: function (model, res, options) {
-                                alert('main render error');
+                            error:function(){
+
                             }
                         });
                     },
