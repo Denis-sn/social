@@ -18,6 +18,8 @@ db.on('error', function(error){
 
 db.once('connected', function(){
 
+    console.log('Connected to DB');
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false, limit: 1024 * 1024 * 200}));
     app.use(session({
@@ -54,6 +56,7 @@ db.once('connected', function(){
                 if (user && user.password === body.password) {
                     req.session.loggedIn = true;
                     req.session.userId = user._id;
+                    req.session.username = user.name;
 
                     return res.status(200).send({success: 'LoggedIn'});
                 }
@@ -104,9 +107,20 @@ db.once('connected', function(){
         });
     });
 
+    app.get('/users', function(req, res, next){
+
+        UserModel.find({}).sort({'name': 'desc'}).exec(function (err, users) {
+            if (err) {
+                return next(err);
+            }
+
+            res.status(200).send(users);
+        });
+    });
+
     app.post('/post', function (req, res, next) {
 
-        req.body.userId = req.session.userId;
+        req.body.username = req.session.username;
         req.body.createdAt = new Date();
         var post = new ModelPost(req.body);
 
@@ -132,8 +146,9 @@ db.once('connected', function(){
 
     app.use(express.static(__dirname + '/public'));
 
-    app.listen(3000, function(){
-        console.log('Server running');
+    var port = 8000;
+    app.listen(port, function(){
+        console.log('Server running on port:' + port);
     });
 });
 

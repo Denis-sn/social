@@ -8,7 +8,9 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
             template: _.template(templateMain),
             events: {
                 'click #logout': 'logout',
-
+                'click #btnMainPosts': 'posts',
+                'click #btnMainFriends': 'friends',
+                'click #btnMainProfile': 'profile'
             },
 
             initialize: function () {
@@ -19,7 +21,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                     success: function (model, res, options) {
                         self.model = model;
                         self.render();
-                        require(['views/collectionPost'], function(CollectionView){
+                        require(['views/collectionPost'], function (CollectionView) {
                             var collectionView = new CollectionView();
                         });
                     },
@@ -28,8 +30,6 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                     }
                 });
             },
-
-
 
             logout: function () {
 
@@ -45,6 +45,20 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                         alert('user.save error');
                     }
                 });
+            },
+
+            posts: function () {
+                Backbone.history.navigate('main', {trigger: true});
+            },
+
+            friends: function () {
+                this.render();
+                Backbone.history.navigate('users', {trigger: true});
+            },
+
+            profile: function () {
+                this.render();
+                Backbone.history.navigate('profile', {trigger: true});
             },
 
             render: function () {

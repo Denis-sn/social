@@ -4,7 +4,7 @@
 define(['Backbone', 'Underscore', 'models/post', 'views/post', 'collections/posts','text!templates/postsFrame.html'],
     function (Backbone, _, ModelPost, PostView, CollectionPosts, PostsFrame) {
         var CollectionView = Backbone.View.extend({
-            el: '#postsFrame',
+            el: '#mainFrame',
             template: _.template(PostsFrame),
             events: {
                 'click #submitNewPost': 'submitNewPost'
