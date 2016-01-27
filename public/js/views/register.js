@@ -32,7 +32,7 @@ define(['Backbone', 'Underscore', 'models/user', 'text!templates/register.html']
                     success: function (res, xhr) { //res ответ бекЭнда!!!
                         App.loggedIn = true;
                         localStorage.setItem('loggedIn', true);
-                        Backbone.history.navigate('main', {trigger: true});
+                        Backbone.history.navigate('posts', {trigger: true});
                     },
                     error: function () {
                         alert('register error');

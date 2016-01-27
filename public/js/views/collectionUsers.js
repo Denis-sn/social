@@ -11,6 +11,7 @@ define(['Backbone', 'Underscore', 'models/user', 'views/user','collections/frien
             },
 
             initialize: function () {
+
                 this.$el.append(this.template);
                 var self = this;
                 var users = new CollectionUser({model: ModelUser});

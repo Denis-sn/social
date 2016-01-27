@@ -13,17 +13,16 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                 'click #btnMainProfile': 'profile'
             },
 
-            initialize: function () {
+            initialize: function (View) {
                 var self = this;
-
                 var user = new ModelUser();
                 user.fetch({
                     success: function (model, res, options) {
                         self.model = model;
                         self.render();
-                        require(['views/collectionPost'], function (CollectionView) {
+/*                        require(['views/collectionPost'], function (CollectionView) {
                             var collectionView = new CollectionView();
-                        });
+                        });*/                 new View();
                     },
                     error: function (model, res, options) {
                         alert('main render error');
@@ -48,16 +47,14 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
             },
 
             posts: function () {
-                Backbone.history.navigate('main', {trigger: true});
+                Backbone.history.navigate('posts', {trigger: true});
             },
 
             friends: function () {
-                this.render();
                 Backbone.history.navigate('users', {trigger: true});
             },
 
             profile: function () {
-                this.render();
                 Backbone.history.navigate('profile', {trigger: true});
             },
 

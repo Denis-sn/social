@@ -29,7 +29,7 @@ define(['Backbone', 'Underscore', 'models/user', 'text!templates/login.html'],
                     success: function (res, xhr) {
                         App.loggedIn = true;
                         localStorage.setItem('loggedIn', true);
-                        Backbone.history.navigate('main', {trigger: true});
+                        Backbone.history.navigate('posts', {trigger: true});
                     },
                     error: function () {
                         alert('login error');

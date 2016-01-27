@@ -17,7 +17,6 @@ define(['Backbone', 'Underscore', 'models/user', 'text!templates/profile.html'],
           user.fetch({
             success: function (model, res, options) {
               self.model = model;
-
               self.render();
             },
             error: function (model, res, options) {

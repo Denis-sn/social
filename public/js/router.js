@@ -6,7 +6,7 @@ define(['Backbone'],function(Backbone){
         routes:{
             'login': 'login',
             'register':'register',
-            'main':'main',
+            'posts':'posts',
             'profile': 'profile',
             'users': 'users',
             '*any':'default'
@@ -18,7 +18,6 @@ define(['Backbone'],function(Backbone){
         login: function(){
             require(['views/login'], function(LoginView){
                 var loginView = new LoginView();
-
             });
         },
 
@@ -29,11 +28,13 @@ define(['Backbone'],function(Backbone){
             });
         },
 
-        main: function(){
+        posts: function(){
             App.loggedIn = localStorage.getItem('loggedIn');
             if(App.loggedIn){
-                require(['views/main'], function(MainView){
-                    var mainView = new MainView();
+                require(['views/collectionPost'], function (CollectionView) {
+                    require(['views/main'], function(MainView){
+                        var mainView = new MainView(CollectionView);
+                    });
                 });
             } else {
                 Backbone.history.navigate('login',{trigger:true});
@@ -42,13 +43,17 @@ define(['Backbone'],function(Backbone){
 
         profile: function(){
             require(['views/profile'], function(ProfileView){
-                var profileView = new ProfileView();
+                require(['views/main'], function(MainView){
+                    var mainView = new MainView(ProfileView);
+                });
             });
         },
 
         users: function(){
             require(['views/collectionUsers'], function(UsersView){
-                var usersView = new UsersView();
+                require(['views/main'], function(MainView){
+                    var mainView = new MainView(UsersView);
+                });
             });
         },
 

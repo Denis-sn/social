@@ -146,7 +146,7 @@ db.once('connected', function(){
 
     app.use(express.static(__dirname + '/public'));
 
-    var port = 8000;
+    var port = 3030;
     app.listen(port, function(){
         console.log('Server running on port:' + port);
     });
