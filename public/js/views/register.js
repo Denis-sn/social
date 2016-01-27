@@ -30,7 +30,7 @@ define(['Backbone', 'Underscore', 'models/user', 'text!templates/register.html']
                 user.urlRoot = '/register';
                 user.save(data, {
                     success: function (res, xhr) { //res ответ бекЭнда!!!
-                        App.loggedIn = true;
+                        App.isLogged = true;
                         localStorage.setItem('loggedIn', true);
                         Backbone.history.navigate('posts', {trigger: true});
                     },
