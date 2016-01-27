@@ -8,6 +8,8 @@ define(['Backbone','router'], function (Backbone, Router) {
 
         App.router = router || {};
         Backbone.history.start();
+
+
     }
 
     return {

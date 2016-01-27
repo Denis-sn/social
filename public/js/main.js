@@ -15,8 +15,7 @@ require.config({
             exports: '_'
         },
         'Backbone': ['Underscore', 'jQuery'],
-        'app'     : ['Backbone'],
-        'views/collectionPost': ['views/main']
+        'app'     : ['Backbone']
     }
 });
 

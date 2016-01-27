@@ -4,12 +4,12 @@
 define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/main.html'],
     function (Backbone, _, ModelUser, ModelPost, templateMain) {
         var MainView = Backbone.View.extend({
-            el: '#content',
+            el: '#wrapper',
             template: _.template(templateMain),
             events: {
                 'click #logout': 'logout',
                 'click #btnMainPosts': 'posts',
-                'click #btnMainFriends': 'friends',
+                'click #btnMainUsers': 'users',
                 'click #btnMainProfile': 'profile'
             },
 
@@ -20,9 +20,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                     success: function (model, res, options) {
                         self.model = model;
                         self.render();
-/*                        require(['views/collectionPost'], function (CollectionView) {
-                            var collectionView = new CollectionView();
-                        });*/                 new View();
+                        new View();
                     },
                     error: function (model, res, options) {
                         alert('main render error');
@@ -36,7 +34,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                 user.urlRoot = '/logout';
                 user.save(null, {
                     success: function (res, xhr) {
-                        App.loggedIn = false;
+                        App.isLogged = false;
                         localStorage.setItem('loggedIn', false);
                         Backbone.history.navigate('login', {trigger: true});
                     },
@@ -50,7 +48,7 @@ define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/
                 Backbone.history.navigate('posts', {trigger: true});
             },
 
-            friends: function () {
+            users: function () {
                 Backbone.history.navigate('users', {trigger: true});
             },
 

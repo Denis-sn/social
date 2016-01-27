@@ -4,7 +4,7 @@
 define(['Backbone', 'Underscore', 'models/user', 'text!templates/login.html'],
     function (Backbone, _, ModelUser, templateLogin) {
         var LoginView = Backbone.View.extend({
-            el: '#content',
+            el: '#wrapper',
             template: _.template(templateLogin),
             events: {
                 'click #loginSubmit': 'login'
@@ -27,7 +27,7 @@ define(['Backbone', 'Underscore', 'models/user', 'text!templates/login.html'],
                 user.urlRoot = '/login';
                 user.save(data, {
                     success: function (res, xhr) {
-                        App.loggedIn = true;
+                        App.isLogged = true;
                         localStorage.setItem('loggedIn', true);
                         Backbone.history.navigate('posts', {trigger: true});
                     },

@@ -4,7 +4,7 @@
 define(['Backbone', 'Underscore', 'models/user', 'text!templates/register.html'],
     function(Backbone, _, ModelUser, templateRegister){
         var RegisterView = Backbone.View.extend({
-            el: '#content',
+            el: '#wrapper',
             template: _.template(templateRegister),
             events:{
                 'click #registerSubmit':'register'
