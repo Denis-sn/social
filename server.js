@@ -123,9 +123,6 @@ db.once('connected', function(){
 
         req.body.username = req.session.username;
         req.body.createdAt = new Date();
-
-        console.log(req.body);
-
         var post = new ModelPost(req.body);
 
         post.save(function (err, post) {

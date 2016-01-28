@@ -35,7 +35,7 @@ define(['Backbone',
                         Backbone.history.navigate('posts', {trigger: true});
                     },
                     error: function () {
-                        alert('login error');
+                        alert('Sorry, wrong login or password!');
                     }
                 });
             },

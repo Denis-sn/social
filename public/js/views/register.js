@@ -13,6 +13,7 @@ define(['Backbone',
                 'click #registerSubmit': 'register',
                 'click #btnLocation': 'getLocation'
             },
+
             initialize: function () {
                 this.render();
             },
@@ -22,7 +23,7 @@ define(['Backbone',
 
                 var name = this.$el.find('#name').val();
                 var avatar = this.$el.find('#avatar').val();
-                var location = [this.getLocation.latitude, this.getLocation.latitude];
+                var location = [this.latitude, this.longitude];
                 var email = this.$el.find('#email').val();
                 var password = this.$el.find('#password').val();
 
@@ -49,10 +50,9 @@ define(['Backbone',
             },
 
             getLocation: function (event) {
+                var self = this;
                 event.preventDefault();
                 var output = this.$el.find('#location');
-                var latitude;
-                var longitude;
 
                 if (!navigator.geolocation) {
                     alert("Geolocation is not supported by your browser");
@@ -60,10 +60,10 @@ define(['Backbone',
                 }
 
                 function success(position) {
-                    latitude = position.coords.latitude;
-                    longitude = position.coords.longitude;
+                    self.latitude = position.coords.latitude;
+                    self.longitude = position.coords.longitude;
 
-                    output.val('Latitude is ' + latitude + '° Longitude is ' + longitude + '°');
+                    output.val('Latitude is ' + self.latitude + '° Longitude is ' + self.longitude + '°');
                 }
 
                 function error() {
