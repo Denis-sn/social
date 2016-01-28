@@ -1,7 +1,10 @@
 /**
  * Created by den on 24.01.16.
  */
-define(['Backbone', 'Underscore', 'models/user', 'text!templates/login.html'],
+define(['Backbone',
+    'Underscore',
+    'models/user',
+    'text!templates/login.html'],
     function (Backbone, _, ModelUser, templateLogin) {
         var LoginView = Backbone.View.extend({
             el: '#wrapper',

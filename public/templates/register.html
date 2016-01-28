@@ -1,29 +1,42 @@
-<h1>Register</h1>
 <form>
     <fieldset>
-        <legend>Your Name</legend>
-        <label>
-            First:
-            <input type="text" name="name" id="name"/>
-        </label>
+        <legend>Register</legend>
+        <fieldset>
+            <legend>Your Name</legend>
+            <label>
+                <input type="text" name="name" id="name"/>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Avatar</legend>
+            <label>
+                <input type="text" name="avatar" id="avatar"/>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Location</legend>
+            <label>
+                <input type="text" name="location" id="location"/>
+                <button id="btnLocation">Get</button>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Email Address</legend>
+            <label>
+                <input type="text" name="email" id="email"/>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Password</legend>
+            <label>
+                <input type="password" name="password" id="password"/>
+            </label>
+        </fieldset>
+        <table>
+            <tr>
+                <td width="98%"> <input type="submit" id="registerSubmit" value="Register Now"/></td>
+                <td><a href="#login">Login</a></td>
+            </tr>
+        </table>
     </fieldset>
-    <fieldset>
-        <legend>Email Address</legend>
-        <label>
-            Email:
-            <input type="text" name="email" id="email"/>
-        </label>
-    </fieldset>
-    <fieldset>
-        <legend>Password</legend>
-        <label>
-            Password:
-           <input type="password" name="password" id="password"/>
-        </label>
-   </fieldset>
-    <input type="submit" id="registerSubmit" value="Register Now"/>
-    <ul>
-        <li><a href="#login">Login</a></li>
-    </ul>
-
 </form>

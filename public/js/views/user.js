@@ -1,7 +1,9 @@
 /**
  * Created by den on 26.01.16.
  */
-define(['Backbone', 'Underscore', 'text!templates/user.html'],
+define(['Backbone',
+    'Underscore',
+    'text!templates/user.html'],
     function (Backbone, _, templateUser) {
         var ViewUser = Backbone.View.extend({
             el:'#user',

@@ -1,22 +1,24 @@
-<h1>Login</h1>
 <form>
     <fieldset>
-        <legend>Credentials</legend>
-        <p class="error" id="error"></p>
-        <label>
-            Email:
-            <input type="text" name="email" id="email">
-        </label>
-        <br />
-        <label>
-            Password:
-            <input type="password" name="password" id="password">
-        </label>
-
+        <legend>Login</legend>
+        <fieldset>
+            <legend>Email</legend>
+            <label>
+                <input type="text" name="email" id="email">
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Password</legend>
+            <label>
+                <input type="password" name="password" id="password">
+            </label>
+        </fieldset>
+        <table>
+            <tr>
+            <td width="98%"><input type="submit" id="loginSubmit" value="Login Now"></td>
+           <!-- <td><a href="#forgotpassword">Forgot Password?</a></td>-->
+            <td><a href="#register">Sign_Up</a></td>
+            </tr>
+        </table>
     </fieldset>
 </form>
-<input type="submit" id="loginSubmit" value="Login Now">
-<ul>
- <!--   <li><a href="#forgotpassword">Forgot Password?</a></li>-->
-    <li><a href="#register">Sign Up</a></li>
-</ul>
