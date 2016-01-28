@@ -1,7 +1,11 @@
 /**
  * Created by den on 24.01.16.
  */
-define(['Backbone', 'Underscore', 'models/user', 'models/post', 'text!templates/main.html'],
+define(['Backbone',
+    'Underscore',
+    'models/user',
+    'models/post',
+    'text!templates/main.html'],
     function (Backbone, _, ModelUser, ModelPost, templateMain) {
         var MainView = Backbone.View.extend({
             el: '#wrapper',

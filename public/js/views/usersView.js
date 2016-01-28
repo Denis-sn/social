@@ -1,9 +1,14 @@
 /**
  * Created by den on 25.01.16.
  */
-define(['Backbone', 'Underscore', 'models/user', 'views/user','collections/friends','text!templates/users.html'],
+define(['Backbone',
+    'Underscore',
+    'models/user',
+    'views/user',
+    'collections/friends',
+    'text!templates/users.html'],
     function(Backbone, _, ModelUser, ViewUser, CollectionUser, templateUser){
-        var ViewUsers = Backbone.View.extend({
+        var UsersView = Backbone.View.extend({
             el: '#mainFrame',
             template: _.template(templateUser),
             events: {
@@ -38,5 +43,5 @@ define(['Backbone', 'Underscore', 'models/user', 'views/user','collections/frien
             }
         });
 
-        return ViewUsers;
+        return UsersView;
     });

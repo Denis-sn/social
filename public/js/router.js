@@ -1,63 +1,52 @@
 /**
  * Created by den on 24.01.16.
  */
-define(['Backbone'],function(Backbone){
+define(['Backbone',
+    'views/login',
+    'views/register',
+    'views/postsView',
+    'views/usersView',
+    'views/profile',
+    'views/main'], function (Backbone, LoginView, RegisterView, PostsView, UsersView, ProfileView,MainView) {
     var Router = Backbone.Router.extend({
-        routes:{
+        routes: {
             'login': 'login',
-            'register':'register',
-            'posts':'posts',
+            'register': 'register',
+            'posts': 'posts',
             'profile': 'profile',
             'users': 'users',
-            '*any':'default'
+            '*any': 'default'
         },
 
-        initialize:function(){
+        initialize: function () {
         },
 
-        login: function(){
-            require(['views/login'], function(LoginView){
-                var loginView = new LoginView();
-            });
+        login: function () {
+            var loginView = new LoginView();
         },
 
-        register: function(){
-            require(['views/register'], function(RegisterView){
-                var registerView = new RegisterView();
-
-            });
+        register: function () {
+            var registerView = new RegisterView();
         },
 
-        posts: function(){
+        posts: function () {
             App.loggedIn = localStorage.getItem('loggedIn');
-            if(App.loggedIn){
-                require(['views/collectionPost'], function (CollectionView) {
-                    require(['views/main'], function(MainView){
-                        var mainView = new MainView(CollectionView);
-                    });
-                });
+            if (App.loggedIn) {
+                var mainView = new MainView(PostsView);
             } else {
-                Backbone.history.navigate('login',{trigger:true});
+                Backbone.history.navigate('login', {trigger: true});
             }
         },
 
-        profile: function(){
-            require(['views/profile'], function(ProfileView){
-                require(['views/main'], function(MainView){
-                    var mainView = new MainView(ProfileView);
-                });
-            });
+        users: function () {
+            var mainView = new MainView(UsersView);
         },
 
-        users: function(){
-            require(['views/collectionUsers'], function(UsersView){
-                require(['views/main'], function(MainView){
-                    var mainView = new MainView(UsersView);
-                });
-            });
+        profile: function () {
+            var mainView = new MainView(ProfileView);
         },
 
-        default: function(){
+        default: function () {
             Backbone.history.navigate('#login', {trigger: true});
         }
     });

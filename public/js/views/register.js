@@ -1,7 +1,10 @@
 /**
  * Created by den on 24.01.16.
  */
-define(['Backbone', 'Underscore', 'models/user', 'text!templates/register.html'],
+define(['Backbone',
+    'Underscore',
+    'models/user',
+    'text!templates/register.html'],
     function(Backbone, _, ModelUser, templateRegister){
         var RegisterView = Backbone.View.extend({
             el: '#wrapper',
