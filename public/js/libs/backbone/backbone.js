@@ -135,7 +135,7 @@
   var eventSplitter = /\s+/;
 
   // Iterates over the standard `event, callback` (as well as the fancy multiple
-  // space-separated events `"change blur", callback` and jQuery-style event
+  // space-separated events `"change blur", callback` and jQuery-styles event
   // maps `{event: callback}`).
   var eventsApi = function(iteratee, events, name, callback, opts) {
     var i = 0, names;
@@ -463,7 +463,7 @@
     set: function(key, val, options) {
       if (key == null) return this;
 
-      // Handle both `"key", value` and `{key: value}` -style arguments.
+      // Handle both `"key", value` and `{key: value}` -styles arguments.
       var attrs;
       if (typeof key === 'object') {
         attrs = key;
@@ -602,7 +602,7 @@
     // If the server returns an attributes hash that differs, the model's
     // state will be `set` again.
     save: function(key, val, options) {
-      // Handle both `"key", value` and `{key: value}` -style arguments.
+      // Handle both `"key", value` and `{key: value}` -styles arguments.
       var attrs;
       if (key == null || typeof key === 'object') {
         attrs = key;

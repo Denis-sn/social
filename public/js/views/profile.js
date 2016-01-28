@@ -1,17 +1,24 @@
 /**
  * Created by den on 25.01.16.
  */
-define(['Backbone', 'Underscore', 'models/user', 'text!templates/profile.html'],
-    function (Backbone, _, ModelUser, templateProfile) {
+define(['Backbone',
+        'Underscore',
+        'models/user',
+        'text!templates/profile.html',
+        'text!templates/editProfile.html'],
+    function (Backbone, _, ModelUser, templateProfile, templateEditProfile) {
         var ProfileView = Backbone.View.extend({
             el: '#mainFrame',
             template: _.template(templateProfile),
             events: {
-                'click #location': 'getLocation'
+                'click #btnEditProfile': 'editProfile',
+                'click #btnSaveProfile': 'saveProfile',
+                'click #btnCancelProfile': 'cancelProfile'
             },
 
             initialize: function () {
-
+                this.$el.empty();
+                this.template = _.template(templateProfile);
                 var self = this;
                 var user = new ModelUser();
                 user.fetch({
@@ -25,33 +32,52 @@ define(['Backbone', 'Underscore', 'models/user', 'text!templates/profile.html'],
                 });
             },
 
-            getLocation: function () {
-                var output = this.$el.find('#outLocation');
+            editProfile: function () {
+                this.$el.empty();
+                this.template = _.template(templateEditProfile);
+                this.render();
+            },
 
-                if (!navigator.geolocation) {
-                    output.append("<p>Geolocation is not supported by your browser</p>");
-                    return;
-                }
+            saveProfile: function (event) {
 
-                function success(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
+                event.preventDefault();
+                var self = this;
 
-                    output.append('<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>');
+                var avatar = this.$el.find('#profileAvatar').val();
+                var name = this.$el.find('#profileName').val();
+                var email = this.$el.find('#profileEmail').val();
+                var latitude = this.$el.find('#profileLocation0').val();
+                var longitude = this.$el.find('#profileLocation1').val();
 
-                    var img = new Image();
-                    img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+                this.model.set({
+                    name :  name,
+                    avatar: avatar,
+                    location: [latitude, longitude],
+                    email :  email
+                });
 
-                    output.append(img);
-                }
+                this.model.save(this.model.changed, {
+                    patch: true,
+                    success: function (model, xhr, options) {
+                        self.undelegateEvents();
 
-                function error() {
-                    output.append("Unable to retrieve your location");
-                }
+                        Backbone.history.fragment = '';
+                        Backbone.history.navigate('profile', {trigger: true});
+                    },
+                    error  : function (model, xhr, options) {
+                        self.$el.append('<span>Error</span>');
+                    }
+                });
 
-                output.append("<p>Locating…</p>");
+                this.$el.empty();
+                this.template = _.template(templateProfile);
+                this.render();
+            },
 
-                navigator.geolocation.getCurrentPosition(success, error);
+            cancelProfile: function () {
+                this.$el.empty();
+                this.template = _.template(templateProfile);
+                this.render();
             },
 
             render: function () {

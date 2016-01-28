@@ -19,7 +19,7 @@ support.ownFirst = i === "0";
 // false until the test is run
 support.inlineBlockNeedsLayout = false;
 
-// Execute ASAP in case we need to set body.style.zoom
+// Execute ASAP in case we need to set body.styles.zoom
 jQuery( function() {
 
 	// Minified: var a,b,c,d

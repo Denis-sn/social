@@ -34,7 +34,7 @@ define(['Backbone',
             if (App.loggedIn) {
                 var mainView = new MainView(PostsView);
             } else {
-                Backbone.history.navigate('login', {trigger: true});
+                Backbone.history.navigate('#login', {trigger: true});
             }
         },
 

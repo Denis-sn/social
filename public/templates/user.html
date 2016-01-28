@@ -1,3 +1,22 @@
 <fieldset>
-    <div>Name: <strong><%= name%></strong>  Email: <strong><%= email%></strong></div>
+    <div>
+        <div id="profileAvatar"><img src="<%= avatar%>" width="65" height="65" align="left" alt="avatar"></div>
+        <div>
+            <table>
+                <tr id="profileName">
+                    <td>Name:</td>
+                    <td><%= name%></td>
+                </tr>
+                <tr id="profileEmail">
+                    <td>Email:</td>
+                    <td><%= email%></td>
+                </tr>
+                <tr id="profileLocation">
+                    <td>Location:</td>
+                    <td><%= location[0]%></td>
+                    <td><%= location[1]%></td>
+                </tr>
+            </table>
+        </div>
+
 </fieldset>

@@ -70,25 +70,30 @@ db.once('connected', function(){
 
     app.post('/register', function (req, res, next) {
 
-        var user = new UserModel(req.body);
-        var shaSum = crypto.createHash('sha256');
+        if(req.body.name && req.body.password && req.body.email){
+            var user = new UserModel(req.body);
+            var shaSum = crypto.createHash('sha256');
 
-        if(user.password){
-            shaSum.update(user.password);
-            user.password = shaSum.digest('hex');
-        }
-
-        user.save(function (err, _user) {
-            if (err) {
-                return next(err);
+            if(user.password){
+                shaSum.update(user.password);
+                user.password = shaSum.digest('hex');
             }
 
-            req.session.loggedIn = true;
-            req.session.userId = user._id;
-            req.session.username = user.name;
+            user.save(function (err, user) {
+                if (err) {
+                    return next(err);
+                }
 
-            res.status(200).send({success: true});
-        });
+                req.session.loggedIn = true;
+                req.session.userId = user._id;
+                req.session.username = user.name;
+
+                res.status(200).send({success: true});
+
+            });
+        } else {
+            res.status(400).send({});
+        }
     });
 
     app.post('/logout', function (req, res, next) {
@@ -142,6 +147,19 @@ db.once('connected', function(){
             }
 
             res.status(200).send(posts);
+        });
+    });
+
+    app.post('/user', function (req, res, next) {
+        var id = req.session.userId;
+        var body = req.body;
+
+        UserModel.findByIdAndUpdate(id, body, {new: true}, function (err, response) {
+            if (err) {
+                return next(err);
+            }
+
+            res.status(200).send(response);
         });
     });
 
