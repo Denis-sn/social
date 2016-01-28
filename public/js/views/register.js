@@ -22,6 +22,7 @@ define(['Backbone',
                 event.preventDefault();
 
                 var name = this.$el.find('#name').val();
+                var birthday = this.$el.find('#birthday').val();
                 var avatar = this.$el.find('#avatar').val();
                 var location = [this.latitude, this.longitude];
                 var email = this.$el.find('#email').val();
@@ -29,6 +30,7 @@ define(['Backbone',
 
                 var data = {
                     name: name,
+                    birthday: birthday,
                     avatar: avatar,
                     location: location,
                     email: email,
@@ -70,7 +72,7 @@ define(['Backbone',
                     alert("Unable to retrieve your location");
                 }
 
-                navigator.geolocation.getCurrentPosition(success, error);
+                navigator.geolocation.getCurrentPosition(success, error, {timeout:1000});
             },
 
             render: function () {

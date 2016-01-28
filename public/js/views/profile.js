@@ -13,7 +13,8 @@ define(['Backbone',
             events: {
                 'click #btnEditProfile': 'editProfile',
                 'click #btnSaveProfile': 'saveProfile',
-                'click #btnCancelProfile': 'cancelProfile'
+                'click #btnCancelProfile': 'cancelProfile',
+                'click #btnGetLocation': 'getLocation'
             },
 
             initialize: function () {
@@ -38,6 +39,29 @@ define(['Backbone',
                 this.render();
             },
 
+            getLocation: function (event) {
+                var self = this;
+                event.preventDefault();
+
+                if (!navigator.geolocation) {
+                    alert("Geolocation is not supported by your browser");
+                    return;
+                }
+
+                function success(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    self.$el.find('#profileLocation0').val(latitude);
+                    self.$el.find('#profileLocation1').val(longitude);
+                }
+
+                function error() {
+                    alert("Unable to retrieve your location");
+                }
+                navigator.geolocation.getCurrentPosition(success, error);
+            },
+
             saveProfile: function (event) {
 
                 event.preventDefault();
@@ -45,15 +69,17 @@ define(['Backbone',
 
                 var avatar = this.$el.find('#profileAvatar').val();
                 var name = this.$el.find('#profileName').val();
+                var birthday = this.$el.find('#profileBirthday').val();
                 var email = this.$el.find('#profileEmail').val();
                 var latitude = this.$el.find('#profileLocation0').val();
                 var longitude = this.$el.find('#profileLocation1').val();
 
                 this.model.set({
-                    name :  name,
+                    name: name,
+                    birthday: birthday,
                     avatar: avatar,
                     location: [latitude, longitude],
-                    email :  email
+                    email: email
                 });
 
                 this.model.save(this.model.changed, {
@@ -64,7 +90,7 @@ define(['Backbone',
                         Backbone.history.fragment = '';
                         Backbone.history.navigate('profile', {trigger: true});
                     },
-                    error  : function (model, xhr, options) {
+                    error: function (model, xhr, options) {
                         self.$el.append('<span>Error</span>');
                     }
                 });

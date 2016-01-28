@@ -71,6 +71,9 @@ db.once('connected', function(){
     app.post('/register', function (req, res, next) {
 
         if(req.body.name && req.body.password && req.body.email){
+
+            //ToDo check email if it exist
+
             var user = new UserModel(req.body);
             var shaSum = crypto.createHash('sha256');
 

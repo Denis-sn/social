@@ -2,34 +2,40 @@
     <fieldset>
         <legend>Register</legend>
         <fieldset>
-            <legend>Your Name</legend>
+            <legend>Name</legend>
             <label>
-                <input type="text" name="name" id="name"/>
+                <input type="text" placeholder="Name" id="name"/><span style="color: red"> *</span>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>Birthday</legend>
+            <label>
+                <input type="date" placeholder="dd.mm.yyyy" id="birthday"/>
             </label>
         </fieldset>
         <fieldset>
             <legend>Avatar</legend>
             <label>
-                <input type="text" name="avatar" id="avatar"/>
+                <input type="text" placeholder="http://..." id="avatar"/>
             </label>
         </fieldset>
         <fieldset>
             <legend>Location</legend>
             <label>
-                <input type="text" name="location" id="location"/>
+                <input type="text" placeholder="latitude, longitude" id="location"/>
                 <button id="btnLocation">Get</button>
             </label>
         </fieldset>
         <fieldset>
             <legend>Email Address</legend>
             <label>
-                <input type="text" name="email" id="email"/>
+                <input type="text" placeholder="email" id="email"/><span style="color: red"> *</span>
             </label>
         </fieldset>
         <fieldset>
             <legend>Password</legend>
             <label>
-                <input type="password" name="password" id="password"/>
+                <input type="password" placeholder="password" id="password"/><span style="color: red"> *</span>
             </label>
         </fieldset>
         <table>

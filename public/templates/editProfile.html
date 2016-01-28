@@ -13,6 +13,10 @@
                     <td ><input type="text" id="profileName" value="<%= name%>"></td>
                 </tr>
                 <tr>
+                    <td>Birthday:</td>
+                    <td ><input type="date" id="profileBirthday" value="<%= birthday%>"></td>
+                </tr>
+                <tr>
                     <td>Email:</td>
                     <td><input type="text" id="profileEmail" value="<%= email%>"></td>
                 </tr>
@@ -21,7 +25,7 @@
                     <td><input type="text"  id="profileLocation0" value="<%= location[0]%>"></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td><button id="btnGetLocation">Get</button></td>
                     <td><input type="text"  id="profileLocation1" value="<%= location[1]%>"></td>
                 </tr>
             </table>
