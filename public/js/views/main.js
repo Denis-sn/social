@@ -17,14 +17,13 @@ define(['Backbone',
                 'click #btnMainProfile': 'profile'
             },
 
-            initialize: function (View) {
+            initialize: function () {
                 var self = this;
                 var user = new ModelUser();
                 user.fetch({
                     success: function (model, res, options) {
                         self.model = model;
                         self.render();
-                        new View();
                     },
                     error: function (model, res, options) {
                         alert('main render error');

@@ -32,18 +32,39 @@ define(['Backbone',
         posts: function () {
             App.loggedIn = localStorage.getItem('loggedIn');
             if (App.loggedIn) {
-                this.mainView = new MainView(PostsView);
+                if(this.mainView){
+                    this.mainView.undelegateEvents();
+                }
+                this.mainView = new MainView();
+                if(this.postsView){
+                    this.postsView.undelegateEvents();
+                }
+                this.postsView = new PostsView();
             } else {
                 Backbone.history.navigate('#login', {trigger: true});
             }
         },
 
         users: function () {
-            this.mainView = new MainView(UsersView);
+            if(this.mainView){
+                this.mainView.undelegateEvents();
+            }
+            this.mainView = new MainView();
+            if(this.usersView){
+                this.usersView.undelegateEvents();
+            }
+            this.usersView = new UsersView();
         },
 
         profile: function () {
-            this.mainView = new MainView(ProfileView);
+            if(this.mainView){
+                this.mainView.undelegateEvents();
+            }
+            this.mainView = new MainView();
+            if(this.profileView){
+                this.profileView.undelegateEvents();
+            }
+            this.profileView = new ProfileView();
         },
 
         default: function () {
