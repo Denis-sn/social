@@ -17,8 +17,10 @@ define(['Backbone',
 
             initialize: function () {
 
+                this.$el.empty();
+                this.$el.append(this.template());
+
                 var self = this;
-                self.$el.append(self.template());
                 var posts = new PostsCollection({model: ModelPost});
 
                 posts.fetch({
