@@ -18,7 +18,7 @@ define(['Backbone',
                 this.render();
             },
 
-            register: function () {
+            register: function (event) {
                 event.preventDefault();
 
                 var name = this.$el.find('#name').val();

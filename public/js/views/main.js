@@ -55,10 +55,9 @@ define(['Backbone',
             users: function () {
                 var input = this.$el.find('#inputMainFindFriends').val();
                 if(input){
-                    console.log('find friend');
+                    alert('find friend by ' + input);
                     Backbone.history.navigate('users', {trigger: true});
                 } else {
-                    console.log('all users');
                     Backbone.history.navigate('users', {trigger: true});
                 }
             },
