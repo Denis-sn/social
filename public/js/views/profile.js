@@ -5,8 +5,9 @@ define(['Backbone',
         'Underscore',
         'models/user',
         'text!templates/profile.html',
-        'text!templates/editProfile.html'],
-    function (Backbone, _, ModelUser, templateProfile, templateEditProfile) {
+        'text!templates/editProfile.html',
+        'moment'],
+    function (Backbone, _, ModelUser, templateProfile, templateEditProfile, moment) {
         var ProfileView = Backbone.View.extend({
             el: '#mainFrame',
             template: _.template(templateProfile),
@@ -59,6 +60,7 @@ define(['Backbone',
                 function error() {
                     alert("Unable to retrieve your location");
                 }
+
                 navigator.geolocation.getCurrentPosition(success, error);
             },
 
@@ -107,6 +109,7 @@ define(['Backbone',
             },
 
             render: function () {
+                this.model.set({'birthday': moment(this.model.get('birthday')).format('YYYY-MM-DD')});
                 this.$el.append(this.template(this.model.toJSON()));
                 return this;
             }

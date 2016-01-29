@@ -1,11 +1,13 @@
 <div class="mainMenu" id="mainMenu">
-<p align="right"><strong><%= name%></strong> <a href="" id="logout">LogOut</a></p>
 <form >
     <fieldset>
         <legend>Menu</legend>
+        <input type="text" id="inputMainFindFriends" placeholder="Find friends"/>
+        <input type="button" id="btnMainUsers" value="Find friends"/>
         <input type="button" id="btnMainPosts" value="Posts"/>
-        <input type="button" id="btnMainUsers" value="Users"/>
+        <input type="button" id="btnMainChats" value="Chats"/>
         <input type="button" id="btnMainProfile" value="My profile"/>
+        <span style="float: right"><strong><%= name%></strong> <a href="" id="logout">LogOut</a></span>
     </fieldset>
 </form>
 </div>

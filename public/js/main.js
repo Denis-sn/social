@@ -8,6 +8,7 @@ require.config({
         Underscore : './libs/underscore/underscore',
         Backbone   : './libs/backbone/backbone',
         text       : './libs/text/text',
+        moment     : './libs/moment/moment',
         templates  : '../templates'
     },
     shim:{

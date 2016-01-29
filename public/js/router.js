@@ -7,7 +7,7 @@ define(['Backbone',
     'views/postsView',
     'views/usersView',
     'views/profile',
-    'views/main'], function (Backbone, LoginView, RegisterView, PostsView, UsersView, ProfileView,MainView) {
+    'views/main'], function (Backbone, LoginView, RegisterView, PostsView, UsersView, ProfileView, MainView) {
     var Router = Backbone.Router.extend({
         routes: {
             'login': 'login',
@@ -32,18 +32,18 @@ define(['Backbone',
         posts: function () {
             App.loggedIn = localStorage.getItem('loggedIn');
             if (App.loggedIn) {
-                var mainView = new MainView(PostsView);
+                this.mainView = new MainView(PostsView);
             } else {
                 Backbone.history.navigate('#login', {trigger: true});
             }
         },
 
         users: function () {
-            var mainView = new MainView(UsersView);
+            this.mainView = new MainView(UsersView);
         },
 
         profile: function () {
-            var mainView = new MainView(ProfileView);
+            this.mainView = new MainView(ProfileView);
         },
 
         default: function () {
