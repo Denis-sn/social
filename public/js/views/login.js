@@ -13,6 +13,7 @@ define(['Backbone',
                 'click #loginSubmit': 'login'
             },
             initialize: function () {
+                $('#mainFrame').empty();
                 this.render();
             },
 

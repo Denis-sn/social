@@ -32,7 +32,6 @@ define(['Backbone',
             },
 
             logout: function () {
-
                 var user = new ModelUser();
                 user.urlRoot = '/logout';
                 user.save(null, {

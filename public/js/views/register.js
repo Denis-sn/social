@@ -15,6 +15,7 @@ define(['Backbone',
             },
 
             initialize: function () {
+                $('#mainFrame').empty();
                 this.render();
             },
 

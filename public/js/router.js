@@ -22,7 +22,9 @@ define(['Backbone',
         },
 
         login: function () {
+            //this.$el.find('#mainFrame').empty();
             var loginView = new LoginView();
+
         },
 
         register: function () {
